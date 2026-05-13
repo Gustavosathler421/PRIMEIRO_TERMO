@@ -88,78 +88,99 @@
 # Revisão do código
 
 import datetime
-
-# Banco de dados simulado
-veiculos_no_shopping = {} 
-tag_db = ["ABC1234", "TAG4567"] 
-
-def entrada_veiculo():
-    print("--- MENU DE ENTRADA ---")
-    try:
-        placa = input("Digite a placa do veículo: ").upper()
-        if placa in veiculos_no_shopping:
-            print(f"Erro: Veículo {placa} já registrado no sistema.")
-            return
-        tem_tag = input("Possui TAG? (s/n): ").lower()
-        if tem_tag == 's':
-            if placa in tag_db:
-                print(f"TAG Identificada! Acesso liberado, {placa}.")
-                veiculos_no_shopping[placa] = datetime.datetime.now()
-                return
-            else:
-                print("TAG não reconhecida. Procedendo como cliente comum.")
-
-        input("Pressione Enter para emitir ticket...")
-        hora_entrada = datetime.datetime.now()
-        veiculos_no_shopping[placa] = hora_entrada
-        print(f"Ticket emitido. Placa: {placa} | Hora: {hora_entrada.strftime('%H:%M:%S')}")
-
-    except Exception as e:
-        print(f"Ocorreu um erro: {e}")
-        def calcular_valor():
-            print("\n--- CÁLCULO DE SAÍDA ---")
-    try:
-        placa = input("Digite a placa do veículo para saída: ").upper()
-        
-        if placa not in veiculos_no_shopping:
-            print("Erro: Veículo não encontrado no sistema.")
-            return None
-        valor_hora = float(input("Digite o valor por hora: R$ "))
-        
-        hora_entrada = veiculos_no_shopping[placa]
-        hora_saida = datetime.datetime.now()
-        duracao = hora_saida - hora_entrada
-        duracao_em_horas = duracao.total_seconds() / 3600
-        horas_cobradas = max(1, round(duracao_em_horas)) 
-        valor_final = horas_cobradas * valor_hora
-        
-        print(f"Tempo permanência: {duracao_em_horas:.2f} horas")
-        print(f"Total a pagar: R$ {valor_final:.2f}")
-        
-        return {"placa": placa, "valor": valor_final, "tempo": duracao_em_horas}
-
-    except ValueError:
-        print("Erro: Valor digitado inválido.")
-        return None
-    def saida_veiculo(dados_saida):
-        if not dados_saida:
-            return
+import math
+registro_veiculos = {} 
+tags_cadastradas = ["TAG123", "TAG456"] 
+relatorio = []
+VALOR_FIXO_ENTRADA = 5.00 
+VALOR_POR_HORA = 8.00      
+def registrar_entrada():
+    print("\n--- [ENTRADA] ---")
+    placa = input("Digite a placa do veículo: ").upper()
+    tem_tag = input("Possui TAG? (s/n): ").lower() == 's'
+    tag_id = ""
+    if tem_tag:
+        tag_id = input("Digite o código da TAG: ").upper()
+        if tag_id not in tags_cadastradas:
+            print("❌ Erro: TAG inválida ou bloqueada.")
+            tem_tag = False
+            print("Procedendo como ticket manual.")
+    hora_entrada = datetime.datetime.now()
+    registro_veiculos[placa] = {
+        'entrada': hora_entrada,
+        'tag': tem_tag,
+        'tag_id': tag_id
+    }
     
-    print("\n--- MENU DE SAÍDA ---")
-    placa = dados_saida['placa']
-    if placa in tag_db:
-        print(f"Cobrança automática na fatura da TAG para {placa}.")
-        print("Cancela liberada!")
+    relatorio.append(f"ENTRADA | Placa: {placa} | Hora: {hora_entrada.strftime('%H:%M:%S')}")
+    
+    print(f"✅ Ticket emitido/Entrada registrada para {placa}")
+    print(f"Hora: {hora_entrada.strftime('%H:%M:%S')}")
+
+def registrar_saida():
+    print("\n--- [SAÍDA] ---")
+    placa = input("Digite a placa do veículo para saída: ").upper()
+    
+    if placa not in registro_veiculos:
+        print(" Erro: Veículo não encontrado na entrada.")
+        return
+
+    dados = registro_veiculos[placa]
+    hora_entrada = dados['entrada']
+    hora_saida = datetime.datetime.now()
+    duracao = hora_saida - hora_entrada
+    total_minutos = duracao.total_seconds() / 60
+
+    if total_minutos <= 60:
+        valor_final = VALOR_FIXO_ENTRADA
     else:
-        pago = input(f"Confirmar pagamento de R${dados_saida['valor']:.2f}? (s/n): ").lower()
-        if pago == 's':
-            print("Ticket pago. Devolvendo ticket...")
-            print("Cancela liberada!")
+        # Arredonda para cima as horas extras
+        horas_extras = math.ceil((total_minutos - 60) / 60)
+        valor_final = VALOR_FIXO_ENTRADA + (horas_extras * VALOR_POR_HORA)
+    
+    print(f"⏱️ Tempo de permanência: {int(total_minutos)} minutos")
+    
+    # Forma de Pagamento
+    if dados['tag']:
+        print(f"✅ TAG {dados['tag_id']} detectada. Valor de R$ {valor_final:.2f} lançado na fatura.")
+    else:
+        print(f"💰 Valor a pagar: R$ {valor_final:.2f}")
+        input("Pressione Enter para confirmar pagamento...")
+        print("✅ Pagamento confirmado.")
+        print("🎫 Ticket devolvido.")
+
+    # Finalização
+    print("🚗 Cancela liberada.")
+    del registro_veiculos[placa] 
+    relatorio.append(f"SAÍDA   | Placa: {placa} | Valor: R$ {valor_final:.2f} | Permanência: {int(total_minutos)} min")
+
+def gerar_relatorio():
+    print("\n--- [RELATÓRIO DE MOVIMENTAÇÃO] ---")
+    for registro in relatorio:
+        print(registro)
+    print("-----------------------------------")
+def menu():
+    while True:
+        print("\n=== SISTEMA DE CANCELA SHOPPING ===")
+        print("1. Registrar Entrada")
+        print("2. Registrar Saída")
+        print("3. Gerar Relatório")
+        print("4. Sair")
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == '1':
+            registrar_entrada()
+        elif opcao == '2':
+            registrar_saida()
+        elif opcao == '3':
+            gerar_relatorio()
+        elif opcao == '4':
+            break
         else:
-            print("Pagamento pendente. Acesso bloqueado.")
-            return
-    del veiculos_no_shopping[placa]
-    print(f"Veículo {placa} saiu.")
-historico_registros = []
+            print("Opção inválida.")
+if __name__ == "__main__":
+    menu()
+
+
 
     
