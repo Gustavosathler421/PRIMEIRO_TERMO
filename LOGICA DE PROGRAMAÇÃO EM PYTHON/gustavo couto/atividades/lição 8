@@ -139,8 +139,6 @@ def registrar_saida():
         valor_final = VALOR_FIXO_ENTRADA + (horas_extras * VALOR_POR_HORA)
     
     print(f"⏱️ Tempo de permanência: {int(total_minutos)} minutos")
-    
-    # Forma de Pagamento
     if dados['tag']:
         print(f"✅ TAG {dados['tag_id']} detectada. Valor de R$ {valor_final:.2f} lançado na fatura.")
     else:
@@ -148,8 +146,6 @@ def registrar_saida():
         input("Pressione Enter para confirmar pagamento...")
         print("✅ Pagamento confirmado.")
         print("🎫 Ticket devolvido.")
-
-    # Finalização
     print("🚗 Cancela liberada.")
     del registro_veiculos[placa] 
     relatorio.append(f"SAÍDA   | Placa: {placa} | Valor: R$ {valor_final:.2f} | Permanência: {int(total_minutos)} min")
