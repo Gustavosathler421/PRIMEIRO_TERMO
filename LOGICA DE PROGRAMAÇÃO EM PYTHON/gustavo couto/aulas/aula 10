@@ -1,0 +1,69 @@
+#Tratamento de erros e Depuração
+# try e except são usados para lidar com erros de forma contloda,evitando que o programa quebre.O código dentro do bloco try é executando normalmente, mas se ocorrer um erro, o controle é passado para o bloco except, onde podemos lidar com a situação de forma apropriada.
+
+# try:
+#     numero = int(input("Digite um número: "))
+#     resultado = 10/ numero
+#     print("O resultado é:" , resultado)
+
+# except ValueError:
+#     print("Erro: Você deve digitar um numero valido")
+
+# except ZeroDivisionError:
+#     print("Erro: Não é possivel dividir por zero")
+
+# except KeyboardInterrupt:
+#         print("\n Programa interrompido")
+
+#Exercicio 1
+# try:
+#         numero1 = float(input("Digite o primeiro número: "))
+#         numero2 = float(input("Digite o segundo número: "))
+#         numero3 = float(input("Digite o terceiro número: "))
+#         media = (numero1 + numero2 + numero3)/3
+#         print("O Valor da média é:", media)
+
+
+# except ValueError:
+#         print("Erro: Você deve digitar apenas valores numéricos válidos.")
+# except ZeroDivisionError:
+#         print("Erro: Divisão por zero detectada.")
+
+#Explicação  de def:define) é usada na programação, principalmente na linguagem Python, para criar e definir uma função personalizada.
+#Uma função funciona como uma "receita de bolo" ou um bloco de código empacotado que realiza uma tarefa específica. Em vez de você escrever as mesmas linhas de código várias vezes, você as guarda dentro de um def e apenas chama o nome da função quando precisar dela.
+
+# def nome_da_funcao(parametro1, parametro2):
+#     resultado = parametro1 + parametro2
+#     return resultado
+#Exemplo 1
+# def saudacao(nome):
+#     return f"Ola, {nome}!"
+# print(saudacao("CORUJAO842"))
+
+#Exemplo 2:
+# def calcular_media(num1,num2,num3):
+#     try:
+#         media = (num1 + num2 + num3) /3
+#         return media
+#     except TypeError:
+#         return f"Erro:todos os valores devem ser numeros"
+#     except ZeroDivisionError:
+#         return f"Erro: Divisão por zero detectada."
+# print(f"calcular_media {(calcular_media(10,20,30))}")
+#Exemplo 3
+# def valores():
+#     print("Digite os três valores:")
+#     a = int(input("Digite o primeiro valor: "))
+#     b = int(input("Digite o segundo valor: "))
+#     c = int(input("Digite o terceiro valor: "))
+#     return a, b, c
+# print(f"O maior valor é: {max(valores())}")
+#Exemplo 4
+def calcular_dobro():
+    try:
+        valor_digitado = int(input("Digite o valor que deseja :)"))
+        total_dobro = valor_digitado * 2
+        return total_dobro
+    except ValueError:
+        print("Digite um válido")
+        print(f"O calculo é: {calcular_dobro()}")
