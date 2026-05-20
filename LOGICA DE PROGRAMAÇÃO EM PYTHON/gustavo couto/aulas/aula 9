@@ -58,17 +58,22 @@
  
 # 9.	O Loop Eterno tentativas = 1 while tentativas <= 3: 
 #     print("Tentando conectar...") 
-#      O código deveria parar após 3 tentativas 
 #corrigido
 # tentativas = 1
 # while tentativas <= 3:
 #     print("Tentando conectar...")
 #     tentativas += 1
  
-# 10.	A Senha Teimosa 
-#  O programa deve pedir a senha até que o usuário digite "python123" senha = "" while senha == "python123":     senha = input("Digite a senha secreta: ") print("Acesso concedido!") 
-#corrigido
+# 10. A Senha Teimosa
+# O programa deve pedir a senha até que o usuário digite "python123"
 # senha = ""
+# while senha == "python123":
+# senha = input("Digite a senha secreta: ")
+# print("Acesso concedido!")
+# corrigido
+# senha = ""
+
 # while senha != "python123":
 #     senha = input("Digite a senha secreta: ")
+
 # print("Acesso concedido!")
