@@ -41,6 +41,7 @@ def validar():
             f"Excedeu em {dias - limite} dias\n"
             f"Taxa extra: R$ {multa:.2f}"
         )
-
-janela = tk.Tk ()
+        
+janela = tk.Tk()
 janela.title("Biblioteca")
+janela.geometry("350x350")
