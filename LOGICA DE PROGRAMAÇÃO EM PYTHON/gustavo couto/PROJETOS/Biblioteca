@@ -45,3 +45,56 @@ def validar():
 janela = tk.Tk()
 janela.title("Biblioteca")
 janela.geometry("350x350")
+
+
+tk.Label(janela, text="Nome").pack()
+txt_nome = tk.Entry(janela)
+txt_nome.pack()
+
+tk.Label(janela, text="Dias de empréstimo").pack()
+txt_dias = tk.Entry(janela)
+txt_dias.pack()
+
+tk.Label(janela, text="Tipo de usuário").pack()
+
+usuario = tk.IntVar(value=1)
+
+tk.Radiobutton(
+    janela,
+    text="Aluno (14 dias)",
+    variable=usuario,
+    value=1
+).pack()
+
+tk.Radiobutton(
+    janela,
+    text="Comunidade (7 dias)",
+    variable=usuario,
+    value=2
+).pack()
+
+tk.Label(janela, text="Categoria do livro").pack()
+
+categoria = tk.StringVar(value="Comum")
+
+tk.Radiobutton(
+    janela,
+    text="Comum",
+    variable=categoria,
+    value="Comum"
+).pack()
+
+tk.Radiobutton(
+    janela,
+    text="Raro",
+    variable=categoria,
+    value="Raro"
+).pack()
+
+tk.Button(
+    janela,
+    text="Validar Empréstimo",
+    command=validar
+).pack(pady=10)
+
+janela.mainloop()
