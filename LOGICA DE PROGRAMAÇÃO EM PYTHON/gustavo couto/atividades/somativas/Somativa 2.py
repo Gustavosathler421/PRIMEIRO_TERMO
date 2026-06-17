@@ -270,7 +270,116 @@
 # janela.mainloop()
 
 #Atividade 9
-import tkinter as tk
-from tkinter import messagebox, ttk
+# import tkinter as tk
+# from tkinter import messagebox
 
-def 
+# def verificar():
+#     medida = float(janela_medida.get())
+
+#     if medida < 9.8:
+#         resultado = "Abaixo da tolerância"
+#     elif medida > 10.2:
+#         resultado = "Acima da tolerância"
+#     else:
+#         resultado = "Dentro da tolerância"
+
+#     messagebox.showinfo("Resultado", resultado)
+
+# janela = tk.Tk()
+# janela.title("Validação de Medida")
+# janela.geometry("300x150")
+
+# tk.Label(janela, text="Digite a medida da peça (mm):").pack()
+
+# janela_medida = tk.Entry(janela)
+# janela_medida.pack()
+
+# tk.Button(
+#     janela,
+#     text="Verificar",
+#     command=verificar
+# ).pack(pady=10)
+
+# tk.Button(
+#     janela,
+#     text="Fechar Janela",
+#     command=janela.destroy
+# ).pack(pady=10)
+
+# janela.mainloop()
+
+#Atividade 10
+# import tkinter as tk
+# from tkinter import messagebox
+
+# def iniciar_prensa():
+#     contagem = ""
+
+#     for i in range(10, 0, -1):
+#         contagem += str(i) + "\n"
+
+#     contagem += "Prensa Ativada!"
+
+#     messagebox.showinfo("Contagem Regressiva", contagem)
+
+# janela = tk.Tk()
+# janela.title("Setup da Prensa")
+# janela.geometry("300x150")
+
+# tk.Button(
+#     janela,
+#     text="Iniciar Contagem",
+#     command=iniciar_prensa
+# ).pack(pady=10)
+
+# tk.Button(
+#     janela,
+#     text="Fechar Janela",
+#     command=janela.destroy
+# ).pack(pady=10)
+
+# janela.mainloop()
+
+#Atividade 11
+# import tkinter as tk
+# from tkinter import messagebox
+
+# peso_total = 0
+
+# def adicionar_peso():
+#     global peso_total
+
+#     peso = float(colocar_peso.get())
+
+#     if peso == 0:
+#         messagebox.showinfo(
+#             "Resultado",
+#             f"Peso total acumulado: {peso_total} kg"
+#         )
+#     else:
+#         peso_total += peso
+#         colocar_peso.delete(0, tk.END)
+
+# janela = tk.Tk()
+# janela.title("Soma de Produção")
+# janela.geometry("300x150")
+
+# tk.Label(janela, text="Peso da caixa (0 para encerrar)").pack()
+
+# colocar_peso = tk.Entry(janela)
+# colocar_peso.pack()
+
+# tk.Button(
+#     janela,
+#     text="Adicionar",
+#     command=adicionar_peso
+# ).pack(pady=10)
+
+# tk.Button(
+#     janela,
+#     text="Fechar Janela",
+#     command=janela.destroy
+# ).pack(pady=10)
+
+# janela.mainloop()
+
