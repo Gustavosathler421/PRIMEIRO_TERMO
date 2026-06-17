@@ -1,100 +1,102 @@
-import tkinter as tk
-from tkinter import messagebox
+# Projeto da biblioteca
 
-def validar():
-    nome = txt_nome.get()
-    dias = txt_dias.get()
+# import tkinter as tk
+# from tkinter import messagebox
 
-    if nome == "" or dias == "":
-        messagebox.showwarning("Aviso", "Preencha todos os campos!")
-        return
+# def validar():
+#     nome = txt_nome.get()
+#     dias = txt_dias.get()
+
+#     if nome == "" or dias == "":
+#         messagebox.showwarning("Aviso", "Preencha todos os campos!")
+#         return
     
-    dias = int(dias)
+#     dias = int(dias)
 
-    if categoria.get() == "Raro" and usuario.get() == 2:
-        messagebox.showwarning(
-            "Empréstimo Negado",
-            "Livros raros podem ser emprestados apenas para alunos."
-        )
-        return
+#     if categoria.get() == "Raro" and usuario.get() == 2:
+#         messagebox.showwarning(
+#             "Empréstimo Negado",
+#             "Livros raros podem ser emprestados apenas para alunos."
+#         )
+#         return
 
-    if usuario.get() == 1:
-        limite = 14
-        tipo = "Aluno"
-    else:
-        limite = 7
-        tipo = "Comunidade"
+#     if usuario.get() == 1:
+#         limite = 14
+#         tipo = "Aluno"
+#     else:
+#         limite = 7
+#         tipo = "Comunidade"
 
-    if dias <= limite:
-        messagebox.showinfo(
-            "Empréstimo Aprovado",
-            f"Usuário: {nome}\n"
-            f"Tipo: {tipo}\n"
-            f"Categoria: {categoria.get()}\n"
-            f"Prazo: {dias} dias"
-        )
-    else:
-        multa = (dias - limite) * 5
-        messagebox.showwarning(
-            "Empréstimo Não Aprovado",
-            f"Limite para {tipo}: {limite} dias\n"
-            f"Excedeu em {dias - limite} dias\n"
-            f"Taxa extra: R$ {multa:.2f}"
-        )
+#     if dias <= limite:
+#         messagebox.showinfo(
+#             "Empréstimo Aprovado",
+#             f"Usuário: {nome}\n"
+#             f"Tipo: {tipo}\n"
+#             f"Categoria: {categoria.get()}\n"
+#             f"Prazo: {dias} dias"
+#         )
+#     else:
+#         multa = (dias - limite) * 5
+#         messagebox.showwarning(
+#             "Empréstimo Não Aprovado",
+#             f"Limite para {tipo}: {limite} dias\n"
+#             f"Excedeu em {dias - limite} dias\n"
+#             f"Taxa extra: R$ {multa:.2f}"
+#         )
         
-janela = tk.Tk()
-janela.title("Biblioteca")
-janela.geometry("350x350")
+# janela = tk.Tk()
+# janela.title("Biblioteca")
+# janela.geometry("350x350")
 
 
-tk.Label(janela, text="Nome").pack()
-txt_nome = tk.Entry(janela)
-txt_nome.pack()
+# tk.Label(janela, text="Nome").pack()
+# txt_nome = tk.Entry(janela)
+# txt_nome.pack()
 
-tk.Label(janela, text="Dias de empréstimo").pack()
-txt_dias = tk.Entry(janela)
-txt_dias.pack()
+# tk.Label(janela, text="Dias de empréstimo").pack()
+# txt_dias = tk.Entry(janela)
+# txt_dias.pack()
 
-tk.Label(janela, text="Tipo de usuário").pack()
+# tk.Label(janela, text="Tipo de usuário").pack()
 
-usuario = tk.IntVar(value=1)
+# usuario = tk.IntVar(value=1)
 
-tk.Radiobutton(
-    janela,
-    text="Aluno (14 dias)",
-    variable=usuario,
-    value=1
-).pack()
+# tk.Radiobutton(
+#     janela,
+#     text="Aluno (14 dias)",
+#     variable=usuario,
+#     value=1
+# ).pack()
 
-tk.Radiobutton(
-    janela,
-    text="Comunidade (7 dias)",
-    variable=usuario,
-    value=2
-).pack()
+# tk.Radiobutton(
+#     janela,
+#     text="Comunidade (7 dias)",
+#     variable=usuario,
+#     value=2
+# ).pack()
 
-tk.Label(janela, text="Categoria do livro").pack()
+# tk.Label(janela, text="Categoria do livro").pack()
 
-categoria = tk.StringVar(value="Comum")
+# categoria = tk.StringVar(value="Comum")
 
-tk.Radiobutton(
-    janela,
-    text="Comum",
-    variable=categoria,
-    value="Comum"
-).pack()
+# tk.Radiobutton(
+#     janela,
+#     text="Comum",
+#     variable=categoria,
+#     value="Comum"
+# ).pack()
 
-tk.Radiobutton(
-    janela,
-    text="Raro",
-    variable=categoria,
-    value="Raro"
-).pack()
+# tk.Radiobutton(
+#     janela,
+#     text="Raro",
+#     variable=categoria,
+#     value="Raro"
+# ).pack()
 
-tk.Button(
-    janela,
-    text="Validar Empréstimo",
-    command=validar
-).pack(pady=10)
+# tk.Button(
+#     janela,
+#     text="Validar Empréstimo",
+#     command=validar
+# ).pack(pady=10)
 
-janela.mainloop()
+# janela.mainloop()
